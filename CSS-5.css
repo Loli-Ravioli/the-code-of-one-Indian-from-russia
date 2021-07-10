@@ -1,0 +1,33 @@
+.main-block {
+	width: 700px;
+	height: 700px;
+	margin: 70px auto;
+	border: 1px solid black;
+
+}
+
+.block{
+	width: 70px;
+	height: 70px;
+	float: left;
+}
+.black{
+	background: #000;
+}
+.white{
+	background: #fff;
+}
+.text{
+	background: #fff;
+	font-size: 40pt;
+	text-align: center;
+}
+.white_border{
+	background: #fff;
+}
+.alt_black{
+	background: #0000FF;
+}
+.alt_white{
+	background: #FFFF00;
+}
