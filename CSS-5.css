@@ -25,9 +25,16 @@
 .white_border{
 	background: #fff;
 }
-.alt_black{
-	background: #0000FF;
+.Pawn{
+	padding: 10px;
+	margin: auto;
+	width: 50%;
+
 }
-.alt_white{
-	background: #FFFF00;
-}
+.allowed_moves{
+	width: 70px;
+	height: 70px;
+	background: green;
+	opacity: 0.6;
+	
+}	

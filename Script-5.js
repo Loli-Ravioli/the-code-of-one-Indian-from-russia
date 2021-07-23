@@ -38,27 +38,45 @@ function Chess(){
 function place_figure(fig_obj) {
 	let elem = document.createElement("img");
 	//console.log(pawn_1.location);
-	let placement_div = document.querySelector('[data-address = ' + pawn_1.location + ']');
-	//console.log(placement_div);
+	let placement_div = document.querySelector('[data-address = ' + fig_obj.location + ']');
+
 	placement_div.appendChild(elem);
 
 	// todo здесь надо пошаманить, чтобы картинки корректно отображались, проверять в OpenServer надо
 	let url = fig_obj.background;
 	elem.src = url;
-	console.log(elem.src)
+	
 
 	// записываем класс фигурки в класс img, чтобы в css размер задать ;)
-	elem.className = pawn_1.constructor.name;
+	elem.className = fig_obj.constructor.name;
+	
 }
 
+function color_allowed_moves(allowed_moves) {
+	for (var c = 0; c < allowed_moves.length; c++) {
+		var color_res=document.querySelector("[data-address = "+ allowed_moves[c] +"]")
+		var color=document.createElement("div");
+		color_res.appendChild(color);
+		color.classList.add("allowed_moves");
+	}
+}
 
 Chess();
 
 //Работает нормально, но все пешки созданны как pawn_1
-var arr = [" ","A","B","C","D","E","F","G","H"," "]
+/*var arr = [" ","A","B","C","D","E","F","G","H"," "]
 for (p=0; p <8; p++) {
-	pawn_1 = new Pawn(arr[p+1]+"2","white")
-	place_figure(pawn_1)
-	console.log(pawn_1.location)
-}
+	pawn_white = new Pawn(arr[p+1]+"2","white")
+	pawn_black = new Pawn(arr[p+1]+"7","black")
+	place_figure(pawn_white)
+	place_figure(pawn_black)
+	
+}*/
+pawn=new Pawn("B3","white");
+place_figure(pawn)
+
+var test=pawn.get_allowed_moves()
+color_allowed_moves(test)
+
+console.log(test)
 
