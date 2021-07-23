@@ -23,9 +23,9 @@ class Figure {
 class Pawn extends Figure {
     is_first_move = true;
 
-    background_map = {
-        'black': '/img/black_pawn.png',
-        'white': '/img/white_pawn.png'
+   background_map = {
+        'black': 'e:/js_try/Focking_Chess_board/img/black_pawn.png',
+        'white': 'e:/js_try/Focking_Chess_board/img/white_pawn.png'
     };
 
     constructor(location, team) {

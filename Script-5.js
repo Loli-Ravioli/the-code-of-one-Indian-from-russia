@@ -37,14 +37,15 @@ function Chess(){
 
 function place_figure(fig_obj) {
 	let elem = document.createElement("img");
-	console.log(pawn_1.location);
+	//console.log(pawn_1.location);
 	let placement_div = document.querySelector('[data-address = ' + pawn_1.location + ']');
-	console.log(placement_div);
+	//console.log(placement_div);
 	placement_div.appendChild(elem);
 
 	// todo здесь надо пошаманить, чтобы картинки корректно отображались, проверять в OpenServer надо
-	let url = window.location.href + fig_obj.background;
+	let url = fig_obj.background;
 	elem.src = url;
+	console.log(elem.src)
 
 	// записываем класс фигурки в класс img, чтобы в css размер задать ;)
 	elem.className = pawn_1.constructor.name;
@@ -53,7 +54,11 @@ function place_figure(fig_obj) {
 
 Chess();
 
-// todo придумай как разместить сразу все пешки
-pawn_1 = new Pawn("B2", "white");
-place_figure(pawn_1);
+//Работает нормально, но все пешки созданны как pawn_1
+var arr = [" ","A","B","C","D","E","F","G","H"," "]
+for (p=0; p <8; p++) {
+	pawn_1 = new Pawn(arr[p+1]+"2","white")
+	place_figure(pawn_1)
+	console.log(pawn_1.location)
+}
 
