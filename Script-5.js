@@ -75,7 +75,7 @@ for (p=0; p <8; p++) {
 queen=new queen("D5","white");
 place_figure(queen)
 
-var test= queen.get_allowed_moves()
+//var test= queen.get_allowed_moves()
 color_allowed_moves(test)
 
 console.log(test)
