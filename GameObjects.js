@@ -50,14 +50,141 @@ class Pawn extends Figure {
             allowed_moves.push(x+y)
             
             let index_x=this.coor_x.indexOf(x)
-            if (x=this.coor_x[index_x+1])              
+            if(x=this.coor_x[index_x+1])            
             allowed_moves.push(x+y);
             
             if(x=this.coor_x[index_x-1])               
             allowed_moves.push(x+y);
             return allowed_moves;
         }
-        
-        //todo дописать логику, надо чтобы функция возвращала все возможные ходы из текущей позиции которую я любезно записал в coordinates
+      
     }
 }
+class bishop extends Figure {
+   background_map = {
+        'black': 'img/black_bishop.png',
+        'white': 'img/white_bishop.png'
+    };
+    constructor(location, team) {
+        super(location, team);
+        this.background = this.background_map[this.team];
+    }
+
+    get_allowed_moves() {
+        let coordinates = this.get_coordinates();
+        let allowed_moves=[];
+        let x=coordinates.x;
+        let y=coordinates.y;
+        let index_x=this.coor_x.indexOf(x);
+        let index_y=this.coor_y.indexOf(y);
+        for (var i=1;i<10;i++) {
+            if((x=this.coor_x[index_x+i])&&(y=this.coor_y[index_y+i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-i])&&(y=this.coor_y[index_y-i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+i])&&(y=this.coor_y[index_y-i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-i])&&(y=this.coor_y[index_y+i]))  
+             allowed_moves.push(x+y);
+         }
+         return allowed_moves;
+      
+    }
+}
+class rook extends Figure {
+   background_map = {
+        'black': 'img/black_rook.png',
+        'white': 'img/white_rook.png'
+    };
+    constructor(location, team) {
+        super(location, team);
+        this.background = this.background_map[this.team];
+    }
+
+    get_allowed_moves() {
+        let coordinates = this.get_coordinates();
+        let allowed_moves=[];
+        let x=coordinates.x;
+        let y=coordinates.y;
+        let index_x=this.coor_x.indexOf(x);
+        let index_y=this.coor_y.indexOf(y);
+         for (var i=1;i<10;i++) {
+            if(x=this.coor_x[index_x+i])  
+             allowed_moves.push(x+y);
+            if(x=this.coor_x[index_x-i])  
+             allowed_moves.push(x+y);
+            }
+             x=coordinates.x;
+        for (var z = 1;z<10;z++) {
+              if(y=this.coor_y[index_y-z])  
+             allowed_moves.push(x+y);
+            if(y=this.coor_y[index_y+z]) 
+             allowed_moves.push(x+y);
+             }     
+        return allowed_moves;
+    }
+}
+class queen extends Figure {
+   background_map = {
+        'black': 'img/black_queen.png',
+        'white': 'img/white_queen.png'
+    };
+    constructor(location, team) {
+        super(location, team);
+        this.background = this.background_map[this.team];
+    }
+
+    get_allowed_moves() {
+        let coordinates = this.get_coordinates();
+        let allowed_moves=[];
+        let x=coordinates.x;
+        let y=coordinates.y;
+        let index_x=this.coor_x.indexOf(x);
+        let index_y=this.coor_y.indexOf(y);
+        for (var i=1;i<10;i++) {
+            if((x=this.coor_x[index_x+i])&&(y=this.coor_y[index_y+i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-i])&&(y=this.coor_y[index_y-i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+i])&&(y=this.coor_y[index_y-i]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-i])&&(y=this.coor_y[index_y+i]))  
+             allowed_moves.push(x+y);
+         }
+         x=coordinates.x;
+         y=coordinates.y;
+        for (var o=1;o<10;o++) {
+            if(x=this.coor_x[index_x+o])  
+             allowed_moves.push(x+y);
+            if(x=this.coor_x[index_x-o])  
+             allowed_moves.push(x+y);
+            }
+             x=coordinates.x;
+             y=coordinates.y;
+        for (var z = 1;z<10;z++) {
+              if(y=this.coor_y[index_y-z])  
+             allowed_moves.push(x+y);
+            if(y=this.coor_y[index_y+z]) 
+             allowed_moves.push(x+y);
+             }     
+        return allowed_moves;
+    }
+}//Дописать короля, и придумать чонить тк get_allowed_moves возврашает массив всех клеток ок без учета есть ли там фигура или нет.В целом как это все будет ходит, основной кусок логики этих ебучих шахмат.
+/*class king extends Figure {
+   background_map = {
+        'black': 'img/king_queen.png',
+        'white': 'img/king_queen.png'
+    };
+    constructor(location, team) {
+        super(location, team);
+        this.background = this.background_map[this.team];
+    }
+
+    get_allowed_moves() {
+        let coordinates = this.get_coordinates();
+        let allowed_moves=[];
+        let x=coordinates.x;
+        let y=coordinates.y;
+        let index_x=this.coor_x.indexOf(x);
+        let index_y=this.coor_y.indexOf(y);
+        */ 

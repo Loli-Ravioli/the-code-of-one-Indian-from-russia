@@ -72,11 +72,10 @@ for (p=0; p <8; p++) {
 	place_figure(pawn_black)
 	
 }*/
-pawn=new Pawn("B3","white");
-place_figure(pawn)
+queen=new queen("D5","white");
+place_figure(queen)
 
-var test=pawn.get_allowed_moves()
+var test= queen.get_allowed_moves()
 color_allowed_moves(test)
 
 console.log(test)
-
