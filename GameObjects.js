@@ -18,6 +18,10 @@ class Figure {
             "y": +coor_arr[1]
         }
     }
+
+    save_location(location) {
+        this.location = location;
+    }
 }
 
 class Pawn extends Figure {
@@ -60,7 +64,7 @@ class Pawn extends Figure {
       
     }
 }
-class bishop extends Figure {
+class Bishop extends Figure {
    background_map = {
         'black': 'img/black_bishop.png',
         'white': 'img/white_bishop.png'
@@ -91,7 +95,7 @@ class bishop extends Figure {
       
     }
 }
-class rook extends Figure {
+class Rook extends Figure {
    background_map = {
         'black': 'img/black_rook.png',
         'white': 'img/white_rook.png'
@@ -124,7 +128,7 @@ class rook extends Figure {
         return allowed_moves;
     }
 }
-class queen extends Figure {
+class Queen extends Figure {
    background_map = {
         'black': 'img/black_queen.png',
         'white': 'img/white_queen.png'
