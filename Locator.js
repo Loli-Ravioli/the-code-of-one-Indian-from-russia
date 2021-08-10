@@ -24,8 +24,10 @@ class Locator {
         }
         this.last_object = object;
         this.map[address] = object;
+        console.log(this.map[address]);
+        console.log(address);
     }
-
+ 
     get_object(address) {
         if (this.map.indexOf(address) === -1) {
             return 'ERROR: INVALID ADDRESS';
@@ -38,7 +40,7 @@ class Locator {
         if (this.map.indexOf(old_address) === -1 || this.map.indexOf(new_address)) {
             return 'ERROR: INVALID ADDRESS';
         }
-
+        //Не работает как надо, надо исправлять сам масив map,как я понял метод выше set_object записывает фигуры в один элемент массива map/
         this.map[new_address] = this.map[old_address];
         this.map[old_address] = null;
     }

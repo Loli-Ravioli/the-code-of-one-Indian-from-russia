@@ -174,10 +174,10 @@ class Queen extends Figure {
         return allowed_moves;
     }
 }//Дописать короля, и придумать чонить тк get_allowed_moves возврашает массив всех клеток ок без учета есть ли там фигура или нет.В целом как это все будет ходит, основной кусок логики этих ебучих шахмат.
-/*class king extends Figure {
+class King extends Figure {
    background_map = {
-        'black': 'img/king_queen.png',
-        'white': 'img/king_queen.png'
+        'black':'img/black_king.png',
+        'white':'img/white_king.png'
     };
     constructor(location, team) {
         super(location, team);
@@ -191,4 +191,32 @@ class Queen extends Figure {
         let y=coordinates.y;
         let index_x=this.coor_x.indexOf(x);
         let index_y=this.coor_y.indexOf(y);
-        */ 
+       
+            if((x=this.coor_x[index_x+1])&&(y=this.coor_y[index_y+1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-1])&&(y=this.coor_y[index_y-1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+1])&&(y=this.coor_y[index_y-1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-1])&&(y=this.coor_y[index_y+1]))  
+             allowed_moves.push(x+y);
+         
+         x=coordinates.x;
+         y=coordinates.y;
+        
+            if(x=this.coor_x[index_x+1])  
+             allowed_moves.push(x+y);
+            if(x=this.coor_x[index_x-1])  
+             allowed_moves.push(x+y);
+            
+             x=coordinates.x;
+             y=coordinates.y;
+       
+              if(y=this.coor_y[index_y-1])  
+             allowed_moves.push(x+y);
+            if(y=this.coor_y[index_y+1]) 
+             allowed_moves.push(x+y);
+                  
+        return allowed_moves;
+        }
+      }

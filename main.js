@@ -54,6 +54,7 @@ function place_figure(fig_obj) {
 	GL.set_object(fig_obj.location, fig_obj);
 
 	elem.addEventListener("click", start_move_figure, false);
+
 }
 
 function color_allowed_moves(allowed_moves) {
@@ -81,16 +82,17 @@ function finish_move_figure(event) {
 	let figure = GL.last_object;
 	GL.move_object(figure.location, target_address);
 	figure.save_location(target_address);
-	console.log(GL.colored)
 	for (let i = 0; i < GL.colored.length; i++) {
 		let color = document.querySelector('[data-address = ' +  GL.colored[i] + ']');
 		let child = color.querySelector('.allowed_moves');
 		child.remove();
 		color.removeEventListener('click', finish_move_figure, false);
+		
 	}
 	GL.clear_colored();
-	console.log(GL.colored)
 	place_figure(figure);
+	console.log(GL.map)
+
 }
 
 сhessBoard();
@@ -104,8 +106,8 @@ for (p=0; p <8; p++) {
 	place_figure(pawn_black)
 	
 }*/
-var pawn1 =new Pawn("D5","white");
-place_figure(pawn1)
+var King1 =new King("G5","white");
+place_figure(King1)
 // color_allowed_moves(pawn1.get_allowed_moves())
 
 // console.log(pawn1)
