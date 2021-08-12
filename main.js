@@ -38,7 +38,6 @@ function сhessBoard(){
 
 function place_figure(fig_obj) {
 	let elem = document.createElement("img");
-	//console.log(pawn_1.location);
 	let placement_div = document.querySelector('[data-address = ' + fig_obj.location + ']');
 
 	placement_div.appendChild(elem);
@@ -91,8 +90,6 @@ function finish_move_figure(event) {
 	}
 	GL.clear_colored();
 	place_figure(figure);
-	console.log(GL.map)
-
 }
 
 сhessBoard();
@@ -106,10 +103,10 @@ for (p=0; p <8; p++) {
 	place_figure(pawn_black)
 	
 }*/
-var King1 =new King("G5","white");
-place_figure(King1)
-// color_allowed_moves(pawn1.get_allowed_moves())
+var Pawn1 =new Pawn("G5","white");
+place_figure(Pawn1)
 
-// console.log(pawn1)
 
-// console.log(pawn1)
+
+
+

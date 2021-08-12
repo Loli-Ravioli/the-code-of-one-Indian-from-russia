@@ -13,23 +13,22 @@ class Locator {
     constructor() {
         for (let i = 0; i < this.coor_x.length; i++) {
             for (let j = 0; j < this.coor_y.length; j++) {
-                this.map.push(this.coor_x[i] + this.coor_y[j]);
+                let key = this.coor_x[i] + this.coor_y[j];
+                this.map[key] = '';
             }
         }
     }
 
     set_object(address, object) {
-        if (this.map.indexOf(address) === -1) {
+        if (!(address in this.map)) {
             return 'ERROR: INVALID ADDRESS';
         }
         this.last_object = object;
         this.map[address] = object;
-        console.log(this.map[address]);
-        console.log(address);
     }
  
     get_object(address) {
-        if (this.map.indexOf(address) === -1) {
+        if (!(address in this.map))  {
             return 'ERROR: INVALID ADDRESS';
         }
         this.last_object = this.map[address];
@@ -37,16 +36,16 @@ class Locator {
     }
 
     move_object(old_address, new_address) {
-        if (this.map.indexOf(old_address) === -1 || this.map.indexOf(new_address)) {
+        if (!(old_address in this.map) || !(new_address in this.map)) {
             return 'ERROR: INVALID ADDRESS';
         }
         //Не работает как надо, надо исправлять сам масив map,как я понял метод выше set_object записывает фигуры в один элемент массива map/
         this.map[new_address] = this.map[old_address];
-        this.map[old_address] = null;
+        this.map[old_address] = '';
     }
 
     add_colored(address) {
-        if (this.map.indexOf(address) === -1) {
+        if (!(address in this.map)) {
             return 'ERROR: INVALID ADDRESS';
         }
         this.colored.push(address);
