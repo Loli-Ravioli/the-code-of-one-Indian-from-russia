@@ -54,4 +54,5 @@ class Locator {
     clear_colored() {
         this.colored = [];
     }
+    
 }

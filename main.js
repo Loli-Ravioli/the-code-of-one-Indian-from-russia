@@ -38,6 +38,7 @@ function сhessBoard(){
 
 function place_figure(fig_obj) {
 	let elem = document.createElement("img");
+	console.log(fig_obj)
 	let placement_div = document.querySelector('[data-address = ' + fig_obj.location + ']');
 
 	placement_div.appendChild(elem);
@@ -70,8 +71,23 @@ function color_allowed_moves(allowed_moves) {
 
 function start_move_figure(event) {
     event.target.removeEventListener('click', start_move_figure, false);
+    console.log(event)
 	let el_address = event.target.parentNode.dataset.address;
 	let figure = GL.get_object(el_address);
+	console.log(el_address)
+	let moves=figure.get_allowed_moves();
+	let valid_moves=[];
+for (var i = 0; i < moves.length; i++) {
+	if (moves[i] in GL.map){
+		 valid_moves.push(moves[i]);
+	}
+}
+console.log(moves)
+	if(valid_moves.length==0){
+		alert("error")
+		return null
+	}
+
 	color_allowed_moves(figure.get_allowed_moves());
 }
 
@@ -79,6 +95,11 @@ function start_move_figure(event) {
 function finish_move_figure(event) {
 	let target_address = event.target.parentNode.dataset.address;
 	let figure = GL.last_object;
+	//Удаляет старую картинку фигуры 
+	let clear =document.querySelector('[data-address = ' +  figure.location + ']');
+	clear.innerHTML="";
+	//console.log(clear);
+
 	GL.move_object(figure.location, target_address);
 	figure.save_location(target_address);
 	for (let i = 0; i < GL.colored.length; i++) {
@@ -88,24 +109,25 @@ function finish_move_figure(event) {
 		color.removeEventListener('click', finish_move_figure, false);
 		
 	}
-	GL.clear_colored();
+		GL.clear_colored();
 	place_figure(figure);
 }
 
 сhessBoard();
 
-//Работает нормально, но все пешки созданны как pawn_1
-/*var arr = [" ","A","B","C","D","E","F","G","H"," "]
-for (p=0; p <8; p++) {
-	pawn_white = new Pawn(arr[p+1]+"2","white")
-	pawn_black = new Pawn(arr[p+1]+"7","black")
-	place_figure(pawn_white)
-	place_figure(pawn_black)
-	
-}*/
-var Pawn1 =new Pawn("G5","white");
-place_figure(Pawn1)
-
+/*GL.map.forEach(function(el) {
+place_figure(el)
+console.log(el)
+});*/
+/*let test = GL.get_map()
+console.log(GL.map)
+test.forEach(place_figure(GL.map["A2"]))*/
+for (const [key, value] of Object.entries(GL.map)) {
+  if(value!==''){
+  	place_figure(value)
+  }
+  
+}
 
 
 
