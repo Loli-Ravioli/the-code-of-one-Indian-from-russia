@@ -25,7 +25,7 @@ class Figure {
 }
 
 class Pawn extends Figure {
-    is_first_move = false;
+    is_first_move = true;
 
    background_map = {
         'black': 'img/black_pawn.png',
@@ -174,7 +174,7 @@ class Queen extends Figure {
              }     
         return allowed_moves;
     }
-}//Дописать короля, и придумать чонить тк get_allowed_moves возврашает массив всех клеток ок без учета есть ли там фигура или нет.В целом как это все будет ходит, основной кусок логики этих ебучих шахмат.
+}
 class King extends Figure {
    background_map = {
         'black':'img/black_king.png',
@@ -222,6 +222,46 @@ class King extends Figure {
         }
       }
 
+class Knight extends Figure {
+   background_map = {
+        'black': 'img/black_knight.png',
+        'white': 'img/white_knight.png'
+    };
+    constructor(location, team) {
+        super(location, team);
+        this.background = this.background_map[this.team];
+    }
+
+    get_allowed_moves() {
+        let coordinates = this.get_coordinates();
+        let allowed_moves=[];
+        let x=coordinates.x;
+        let y=coordinates.y;
+        let index_x=this.coor_x.indexOf(x);
+        let index_y=this.coor_y.indexOf(y);
+        /*if((x=this.coor_x[index_x+1]) && (y=this.coor_y[index_y+2]))
+          allowed_moves.push(x+y)*/
+          if((x=this.coor_x[index_x+1])&&(y=this.coor_y[index_y+2]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-1])&&(y=this.coor_y[index_y-2]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+1])&&(y=this.coor_y[index_y-2]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-1])&&(y=this.coor_y[index_y+2]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+2])&&(y=this.coor_y[index_y-1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-2])&&(y=this.coor_y[index_y+1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x-2])&&(y=this.coor_y[index_y-1]))  
+             allowed_moves.push(x+y);
+            if((x=this.coor_x[index_x+2])&&(y=this.coor_y[index_y+1]))  
+             allowed_moves.push(x+y);
+
+        return allowed_moves;
+      }
+    }
+
       // Это локатор он работает по типу памяти. В нем должны храниться все объекты, через него все взаимодействия происходят.
 class Locator {
     coor_x = ["A","B","C","D","E","F","G","H"];
@@ -241,8 +281,23 @@ class Locator {
                 let team=0;
                 if(j>4)team=1;
                 let key = this.coor_x[i] + this.coor_y[j];
-                 if(j==1||j==6){
+                if(j==1||j==6){
                     this.map[key] = new Pawn(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
+                }
+                else if((j==0||j==7)&&(i==0||i==7)){
+                  this.map[key] = new Rook(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
+                }
+                else if((j==0||j==7)&&(i==1||i==6)){
+                  this.map[key] = new Knight(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
+                }
+                else if((j==0||j==7)&&(i==2||i==5)){
+                  this.map[key] = new Bishop(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
+                }
+                else if((j==0||j==7)&&i==4){
+                  this.map[key] = new King(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
+                }
+                else if((j==0||j==7)&&i==3){
+                  this.map[key] = new Queen(this.coor_x[i]+this.coor_y[j],this.team_map[team]) ;
                 }
                 else this.map[key] = '';
             }
@@ -261,6 +316,7 @@ class Locator {
         if (!(address in this.map))  {
             return 'ERROR: INVALID ADDRESS';
         }
+        console.log(this.map[address])
         this.last_object = this.map[address];
         return this.map[address];
     }

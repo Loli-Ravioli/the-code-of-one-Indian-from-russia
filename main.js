@@ -71,10 +71,9 @@ function color_allowed_moves(allowed_moves) {
 
 function start_move_figure(event) {
     event.target.removeEventListener('click', start_move_figure, false);
-    console.log(event)
 	let el_address = event.target.parentNode.dataset.address;
 	let figure = GL.get_object(el_address);
-	console.log(el_address)
+	color_allowed_moves(figure.get_allowed_moves());
 	let moves=figure.get_allowed_moves();
 	let valid_moves=[];
 for (var i = 0; i < moves.length; i++) {
@@ -82,13 +81,11 @@ for (var i = 0; i < moves.length; i++) {
 		 valid_moves.push(moves[i]);
 	}
 }
-console.log(moves)
+
 	if(valid_moves.length==0){
 		alert("error")
 		return null
 	}
-
-	color_allowed_moves(figure.get_allowed_moves());
 }
 
 // Посмотри внимательно как работает эта функция, нужно добавить удаление картинки на старой позиции
@@ -114,14 +111,10 @@ function finish_move_figure(event) {
 }
 
 сhessBoard();
-
-/*GL.map.forEach(function(el) {
-place_figure(el)
-console.log(el)
-});*/
-/*let test = GL.get_map()
 console.log(GL.map)
-test.forEach(place_figure(GL.map["A2"]))*/
+/*knight= new Knight("D4","white")
+place_figure(knight)*/
+
 for (const [key, value] of Object.entries(GL.map)) {
   if(value!==''){
   	place_figure(value)
